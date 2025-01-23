@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
         break;
       case "heic":
       case "heif":
-        converter = await sharp(buffer)[format]({
+        converter = converter.heif({
           compression: "hevc",
           lossless: quality === 100,
           quality: quality // 1-100 arası değer
