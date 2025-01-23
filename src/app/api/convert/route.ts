@@ -65,11 +65,10 @@ export async function POST(request: NextRequest) {
         break;
       case "heic":
       case "heif":
-        converter = converter.heif({ 
-          quality,
+        converter = await sharp(buffer)[format]({
           compression: "hevc",
           lossless: quality === 100,
-          speed: Math.floor((100 - quality) / 20) // 0-5 arası değer
+          quality: quality // 1-100 arası değer
         });
         break;
       case "jxl":
